@@ -1,11 +1,11 @@
 // ====== USER PARAMS
 export type CreateUserParams = {
-    clerkId: string 
+    clerkId: string ;
     firstName: string | null;
     lastName: string | null;
-    username: string
-    email: string
-    photo: string
+    username: string;
+    email: string;
+    photo: string;
   }
   
   export type UpdateUserParams = {
