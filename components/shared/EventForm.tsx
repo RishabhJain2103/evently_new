@@ -44,9 +44,6 @@ const EventForm = ( { userId , type}: EventFromProps) => {
                   <FormControl>
                     <Input placeholder="Event Title" {...field} className="input-field"/>
                   </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
