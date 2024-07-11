@@ -9,6 +9,7 @@ import {Form,FormControl,FormDescription,FormField,FormItem,FormLabel,FormMessag
 import { Input } from "@/components/ui/input"
 import { eventformSchema } from "@/lib/validator";
 import { eventDefaultValues } from "@/constants";
+import { Dropdown } from "./Dropdown";
 
 
 
@@ -43,6 +44,18 @@ const EventForm = ( { userId , type}: EventFromProps) => {
                 <FormItem className="w-full">
                   <FormControl>
                     <Input placeholder="Event Title" {...field} className="input-field"/>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="categoryId"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormControl>
+                    <Dropdown onChangeHandler={field.onChange} value={field.value} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
