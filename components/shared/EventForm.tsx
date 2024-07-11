@@ -38,7 +38,7 @@ const EventForm = ( { userId , type}: EventFromProps) => {
         <div className="flex flex-col gap-5 flex-row">
             <FormField
               control={form.control}
-              name="Title"
+              name="title"
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormControl>
