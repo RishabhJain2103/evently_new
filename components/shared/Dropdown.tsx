@@ -28,10 +28,10 @@ type DropdownProps={
 
 export const Dropdown = ({value, onChangeHandler}: DropdownProps) => {
     const [categories,setCategories]= useState<ICategory[]>([])
-    const [NewCategpry, setNewCategpry] = useState('');
+    const [NewCategory, setNewCategory] = useState('');
 
     const handleAddCategory= ()=>{
-        
+
     }
   return (
         <Select onValueChange={onChangeHandler} defaultValue={value}>
