@@ -6,12 +6,12 @@ export const eventformSchema = z.object({
     }),
     description: z.string().min(3, {
         message: "Description must be ateleast 3 characters.",
-    }).max(400{
+    }).max(400,{
         message: "Description can be max 400 characters"
     }),
     location: z.string().min(3, {
         message: "location must be ateleast 3 characters.",
-    }).max(400{
+    }).max(400,{
         message: "location can be max 400 characters"
     }),
     imageUrL: z.string(),
