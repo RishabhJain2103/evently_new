@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from 'react-hook-form';
-import { z } from "zod"
+import {  z } from "zod"
 import { Button } from "@/components/ui/button"
 import {Form,FormControl,FormDescription,FormField,FormItem,FormLabel,FormMessage,
 } from "@/components/ui/form"
@@ -13,8 +13,9 @@ import { Dropdown } from "./Dropdown";
 import { Textarea } from "@/components/ui/textarea"
 import { FileUploader } from "./FileUploader";
 import { useState } from "react";
-
-
+import Image from "next/image";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 type EventFromProps={
     userId: string
@@ -24,6 +25,8 @@ type EventFromProps={
 const EventForm = ( { userId , type}: EventFromProps) => {
     const initialValues=eventDefaultValues;
     const [Files, setFiles] = useState<File[]>([])
+    // const [startDate, setStartDate] = useState(new Date());
+
     const form = useForm<z.infer<typeof eventformSchema>>({
         resolver: zodResolver(eventformSchema),
         defaultValues: initialValues
@@ -89,6 +92,62 @@ const EventForm = ( { userId , type}: EventFromProps) => {
                             imageUrl={field.value}
                             setFiles= {setFiles}
                         />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+        </div>
+        <div className="flex flex-col gap-5 md:flex-row">
+            <FormField
+              control={form.control}
+              name="location"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormControl>
+                    <div className="flex-center h-[52px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                        <Image 
+                         src='/assets/icons/location-grey.svg'
+                         alt="calender"
+                         width={24}
+                         height={24}
+                        />
+
+
+                        <Input placeholder="Event location or Online" {...field} className="input-field"/>
+
+                    </div>
+
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+        </div>
+        <div className="flex flex-col gap-5 md:flex-row">
+            <FormField
+              control={form.control}
+              name="startDateTime"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormControl>
+                    <div className="flex-center h-[52px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                        <Image 
+                         src='/assets/icons/calender.svg'
+                         alt="calender"
+                         width={24}
+                         height={24}
+                         className="filter-grey"
+                        />
+                        <p className="ml-3 whitespace-nowrap text-green-600">Start Date:</p>
+
+                        <DatePicker 
+                            selected={field.value} 
+                            onChange={(date ) => field.onChange(date)} 
+                        />
+
+                    </div>
+
                   </FormControl>
                   <FormMessage />
                 </FormItem>
