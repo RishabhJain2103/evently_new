@@ -200,7 +200,7 @@ const EventForm = ( { userId , type}: EventFromProps) => {
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormControl>
-                    <div className="flex-center h-[52px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                      <div className="flex-center h-[52px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
                         <Image 
                          src='/assets/icons/dollar.svg'
                          alt="dollar"
@@ -229,6 +229,9 @@ const EventForm = ( { userId , type}: EventFromProps) => {
                             </FormItem>
                           )}
                         />
+                        
+                      </div>
+                      <div className="flex-center h-[52px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
                         <FormField
                           control={form.control}
                           name="url"
@@ -253,7 +256,7 @@ const EventForm = ( { userId , type}: EventFromProps) => {
                             </FormItem>
                           )}
                         />
-                    </div>
+                      </div>
 
                   </FormControl>
                   <FormMessage />
