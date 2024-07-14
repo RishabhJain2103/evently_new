@@ -2,7 +2,7 @@ import EventForm from "@/components/shared/EventForm"
 import { getEventById } from "@/lib/actions/event.actions";
 import { auth } from "@clerk/nextjs/server";
 
-type UpdateEventProps{
+type UpdateEventProps={
   params:{
     id:string
   }
@@ -24,7 +24,7 @@ const UpdateEvent = async ({params:{id}}:UpdateEventProps) => {
       </section>   
 
       <div className="wrapper my-8">
-        <EventForm userId={userId} event={event} eventId={event._id} Idtype="Update"/>
+        <EventForm userId={userId} event={event} eventId={event._id} type="Update"/>
       </div>
     </>
   )
