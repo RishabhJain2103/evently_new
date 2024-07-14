@@ -9,7 +9,7 @@ import Category from "../mongodb/database/models/category.model"
 
 const populateEvent=async (query:any)=>{
     return query
-     .populate({path:'organiser', model:User, select:`_id firstName lastName`})
+     .populate({path:'organizer', model:User, select:`_id firstName lastName`})
      .populate({path:'category', model:Category ,select:`_id name`})
 }
 
@@ -17,12 +17,12 @@ export const createEvent= async ({event,userId,path}:CreateEventParams)=>{
     try {
         await connectToDatabase();
         
-        const organiser=await User.findById(userId);
-        if (!organiser){
+        const organizer=await User.findById(userId);
+        if (!organizer){
             throw new Error("Organizer not Found");
         }
 
-        const newEvent= await Event.create({...event,category: event.categoryId, organiser:userId
+        const newEvent= await Event.create({...event,category: event.categoryId, organizer:userId
 
         });
         return JSON.parse(JSON.stringify(newEvent));
