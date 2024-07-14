@@ -20,15 +20,20 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { useUploadThing } from "@/lib/uploadthing"
 import CreateEvent from "@/app/(root)/events/create/page";
 import { useRouter } from "next/navigation";
-import { createEvent } from "@/lib/actions/event.actions";
+import { createEvent, updateEvent } from "@/lib/actions/event.actions";
+import { IEvent } from "@/lib/mongodb/database/models/event.model";
 
 type EventFromProps={
     userId: string
     type: "Create"| "Update"
+    event?: IEvent
+    eventId?: string
 }
 
-const EventForm = ( { userId , type}: EventFromProps) => {
-    const initialValues=eventDefaultValues;
+const EventForm = ( { userId , type, event, eventId}: EventFromProps) => {
+    const initialValues=event && type==='Update'? {...event, startDateTime:new Date(event.startDateTime),
+      endDateTime: new Date(event.endDateTime)
+    }:eventDefaultValues;
     const [Files, setFiles] = useState<File[]>([])
     // const [startDate, setStartDate] = useState(new Date());
     const { startUpload }= useUploadThing('imageUploader')
@@ -65,6 +70,26 @@ const EventForm = ( { userId , type}: EventFromProps) => {
           if (newEvent){
             form.reset();
             router.push(`/events/${newEvent._id}`);
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      if (type==='Update'){
+        if (!eventId){
+          router.back()
+          return
+        }
+        try {
+          const updatedEvent = await updateEvent({
+            userId,
+            event:{ ...values, imageUrl: uploadedImageUrl, _id: eventId},
+            path:`/event/${eventId}`
+          })
+
+          if (updatedEvent){
+            form.reset();
+            router.push(`/events/${updatedEvent._id}`);
           }
         } catch (error) {
           console.log(error)
