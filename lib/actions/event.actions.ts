@@ -2,10 +2,10 @@
 
 import { revalidatePath } from 'next/cache'
 
-import { connectToDatabase } from '@/lib/database'
-import Event from '@/lib/database/models/event.model'
-import User from '@/lib/database/models/user.model'
-import Category from '@/lib/database/models/category.model'
+import { connectToDatabase } from '@/lib/mongodb/database'
+import Event from '@/lib/mongodb/database/models/event.model'
+import User from '@/lib/mongodb/database/models/user.model'
+import Category from '@/lib/mongodb/database/models/category.model'
 import { handleError } from '@/lib/utils'
 
 import {
