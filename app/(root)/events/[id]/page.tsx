@@ -40,8 +40,8 @@ const EventDetails= async ({params: { id }}:SearchParamProps) => {
                 <div className='flex flex-col gap-5'>
                     <div className='flex gap-2 md:gap-3'>
                         <Image 
-                               src="/assets/icons/calender.svg"
-                               alt='Calender'
+                               src="/assets/icons/calendar.svg"
+                               alt='Calendar'
                                width={32}
                                height={32}
                         />
